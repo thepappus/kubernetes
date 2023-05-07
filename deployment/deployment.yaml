@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp-deployment
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  replicas: 4
+  template:
+    metadata:
+      name: busybox
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command: ["/bin/sh"]
+          args: ["-c", "while true; do echo hellp; sleep 10; done"]
